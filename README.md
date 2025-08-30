@@ -38,21 +38,24 @@ uvicorn app.main:app --reload
 http://127.0.0.1:8000/docs
 ```
 This should be the project directory
-logbert-restapi
-│── app/
+logbert-restapi/
+│
+├── app/
 │   ├── main.py
 │   ├── utils.py
-│   ├── schemas.py
-│── full_log_anomaly_model/
-|    ├── bert_feature_extractor/
-|    │   ├── config.json
-|    │   └── model.safetensors
-|    │
-|    ├── tokenizers/
-|    │   ├── special_tokens_map.json
-|    │   ├── tokenizer_config.json
-|    │   └── vocab.txt
-|    │
-|    ├── id2label.json
-|    └── xgb_classifier.joblib
-│── requirements.txt
+│   └── schemas.py
+│
+├── full_log_anomaly_model/
+│   ├── bert_feature_extractor/
+│   │   ├── config.json
+│   │   └── model.safetensors
+│   │
+│   ├── tokenizers/
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer_config.json
+│   │   └── vocab.txt
+│   │
+│   ├── id2label.json
+│   └── xgb_classifier.joblib
+│
+└── requirements.txt
