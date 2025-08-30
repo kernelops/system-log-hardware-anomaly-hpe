@@ -1,50 +1,58 @@
-# Hardware Anomaly Detection using System Logs
+Download the output file named full_log_anomaly_model from the notebook
+full_log_anomaly_model/
+│
+├── bert_feature_extractor/
+│   ├── config.json
+│   └── model.safetensors
+│
+├── tokenizers/
+│   ├── special_tokens_map.json
+│   ├── tokenizer_config.json
+│   └── vocab.txt
+│
+├── id2label.json
+└── xgb_classifier.joblib
+Its file structure will be as mentioned above
+I couldn't add it as it is too big
 
-## Project Overview
-
-This project focuses on **hardware anomaly detection using system logs**. It leverages machine learning techniques to analyze system log data and identify potential hardware failures, performance issues, and system anomalies before they cause critical problems.
-
-## Dataset
-
-This project utilizes the [Loghub](https://github.com/logpai/loghub) dataset collection, which provides a comprehensive set of system logs from various computing environments including:
-
-- **Operating Systems**: Windows, Linux, Mac
-- **Distributed Systems**: HDFS, Hadoop, Spark, Zookeeper
-- **Supercomputers**: BGL, HPC, Thunderbird
-- **Mobile Systems**: Android, HealthApp
-- **Server Applications**: Apache, OpenSSH, OpenStack
-- **Standalone Software**: Proxifier
-
-The Loghub dataset contains structured and unstructured log files with corresponding templates, making it ideal for training anomaly detection models.
-
-## Project Structure
-
-Will be updated soon...
-
-## Features
-
-- **Multi-platform Log Analysis**: Support for various operating systems and distributed systems
-- **Structured and Unstructured Log Processing**: Handles both raw logs and pre-processed structured data
-- **Anomaly Detection Models**: Implementation of advanced ML techniques for hardware anomaly detection
-- **Comprehensive Dataset**: Access to diverse log sources for robust model training
-
-## Getting Started
-
-Will be updated soon...
-
-## Citation
-
-If you use this project in your research, please cite the Loghub dataset:
-
+1. Install Python
+2. Create a venv:
 ```
-@inproceedings{zhu2023loghub,
-  title={Loghub: A Large Collection of System Log Datasets for AI-driven Log Analytics},
-  author={Zhu, Jieming and He, Shilin and He, Pinjia and Liu, Jinyang and Lyu, Michael R},
-  booktitle={IEEE International Symposium on Software Reliability Engineering (ISSRE)},
-  year={2023}
-}
+python -m venv venv
+source venv/bin/activate   # mac/linux
+venv\Scripts\activate      # windows
 ```
 
-## License
+3. Install dependencies:
+```
+pip install -r requirements.txt
+```
 
-This project is for research and academic purposes. Please refer to the [Loghub repository](https://github.com/logpai/loghub) for dataset licensing information. 
+4. Run the server:
+```
+uvicorn app.main:app --reload
+```
+
+5. Open Swagger docs at:
+```
+http://127.0.0.1:8000/docs
+```
+This should be the project directory
+logbert-restapi
+│── app/
+│   ├── main.py
+│   ├── utils.py
+│   ├── schemas.py
+│── full_log_anomaly_model/
+|    ├── bert_feature_extractor/
+|    │   ├── config.json
+|    │   └── model.safetensors
+|    │
+|    ├── tokenizers/
+|    │   ├── special_tokens_map.json
+|    │   ├── tokenizer_config.json
+|    │   └── vocab.txt
+|    │
+|    ├── id2label.json
+|    └── xgb_classifier.joblib
+│── requirements.txt
