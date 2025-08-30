@@ -1,4 +1,5 @@
-Download the output file named full_log_anomaly_model from the notebook
+Download the output folder full_log_anomaly_model from the notebook. Its structure should look like this:
+```
 full_log_anomaly_model/
 │
 ├── bert_feature_extractor/
@@ -12,7 +13,7 @@ full_log_anomaly_model/
 │
 ├── id2label.json
 └── xgb_classifier.joblib
-Its file structure will be as mentioned above
+```
 I couldn't add it as it is too big
 
 1. Install Python
@@ -37,7 +38,10 @@ uvicorn app.main:app --reload
 ```
 http://127.0.0.1:8000/docs
 ```
-This should be the project directory
+
+
+Project Structure
+```
 logbert-restapi/
 │
 ├── app/
@@ -59,3 +63,4 @@ logbert-restapi/
 │   └── xgb_classifier.joblib
 │
 └── requirements.txt
+```
