@@ -16,21 +16,20 @@ We explored multiple modeling approaches across complementary datasets to detect
 ```
 Backblaze-DeepAR-Harddrive/
   backblaze-2025-q1-deepar.ipynb
-  Backblaze-DeepAR-Technical-Report.md
+  DeepAR_Documentation.md
   SMART_Attributes_CheatSheet.md
 
 logBERT_XGBoost-BGL-loghub/
   bgl-full-logbert-xgboost.ipynb
-  fast-api/
-    app/
-      main.py
-      schemas.py
-      utils.py
+  fast-api-logBERT_XGBoost-BGL-loghub/
+    main.py
     requirements.txt
+    schemas.py
+    utils.py
 
 logBERT-windows_logs-loghub/
-  LogBERT-windows-logs-anomaly-rate.ipynb
   logbert-model.pth
+  LogBERT-windows-logs-anomaly-rate.ipynb
   vocab_unified.pkl
 
 PSM-LSTM/
@@ -44,17 +43,17 @@ loghub/  # sample subsets from Loghub for reference/testing
 - Windows logs: Supervised training with LogBERT embeddings and XGBoost on the Windows subset from Loghub. See `logBERT-windows_logs-loghub/LogBERT-windows-logs-anomaly-rate.ipynb`.
 
 - BGL log anomalies (with API): LogBERT + XGBoost trained via the Kaggle notebook; a FastAPI wrapper serves predictions from the fine-tuned feature extractor and classifier.
-  - Training notebook and weights: Kaggle link `https://www.kaggle.com/code/nishanthegde2315/bgl-full-logbert-xgboost`
+  - Training notebook and weights: Kaggle link [BGL Full LogBERT + XGBoost](https://www.kaggle.com/code/nishanthegde2315/bgl-full-logbert-xgboost)
   - Code: `logBERT_XGBoost-BGL-loghub/` (see FastAPI setup below)
 
 - PSM telemetry anomalies: LSTM and LSTM+XGBoost were evaluated; the pure LSTM performed better.
-  - Dataset: `https://www.kaggle.com/datasets/ljolm08/pooled-server-metrics-psm`
+  - Dataset: [Pooled Server Metrics (PSM)](https://www.kaggle.com/datasets/ljolm08/pooled-server-metrics-psm)
   - Notebook: `PSM-LSTM/psm-lstm-xgboost.ipynb`
 
 - Backblaze HDD failure forecasting: DeepAR on per-model daily failure rates, trained primarily on Q1 2025.
-  - Dataset: `https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data`
+  - Dataset: [Backblaze Hard Drive Test Data](https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data)
   - Notebook: `Backblaze-DeepAR-Harddrive/backblaze-2025-q1-deepar.ipynb`
-  - Technical report: `Backblaze-DeepAR-Harddrive/Backblaze-DeepAR-Technical-Report.md`
+  - Technical report: `Backblaze-DeepAR-Harddrive/DeepAR_Documentation.md`
 
 ## FastAPI Inference Service (BGL - LogBERT + XGBoost)
 
@@ -63,18 +62,18 @@ The API wraps a fine-tuned LogBERT (feature extractor) and an XGBoost classifier
 ### Model artifacts
 
 - Download the model folder produced by the Kaggle training (feature extractor, tokenizer, `xgb_classifier.joblib`, `id2label.json`), and place it at:
-  - `logBERT_XGBoost-BGL-loghub/fast-api/app/full_log_anomaly_model/`
+  - `logBERT_XGBoost-BGL-loghub/fast-api-logBERT_XGBoost-BGL-loghub/full_log_anomaly_model/`
 
-Kaggle training reference: `https://www.kaggle.com/code/nishanthegde2315/bgl-full-logbert-xgboost`
+Kaggle training reference: [BGL Full LogBERT + XGBoost](https://www.kaggle.com/code/nishanthegde2315/bgl-full-logbert-xgboost)
 
 ### Local setup
 
 ```bash
-cd logBERT_XGBoost-BGL-loghub/fast-api
+cd logBERT_XGBoost-BGL-loghub/fast-api-logBERT_XGBoost-BGL-loghub
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 ### Usage
@@ -117,9 +116,9 @@ pip install -r requirements.txt
 
 ## Acknowledgements & Data Sources
 
-- Loghub datasets (Windows, BGL, etc.)
-- PSM: `https://www.kaggle.com/datasets/ljolm08/pooled-server-metrics-psm`
-- Backblaze Drive Stats and quarterly AFR snapshots: see `https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data`
+- Loghub datasets (Windows, BGL, etc.): [Loghub on GitHub](https://github.com/logpai/loghub)
+- PSM: [Pooled Server Metrics (PSM)](https://www.kaggle.com/datasets/ljolm08/pooled-server-metrics-psm)
+- Backblaze Drive Stats and quarterly AFR snapshots: see [Backblaze Hard Drive Test Data](https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data)
 
 If you use Backblaze data, please cite Backblaze as the source per their dataset terms.
 
