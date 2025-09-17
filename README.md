@@ -111,8 +111,8 @@ pip install -r requirements.txt
 
 ## Contributors
 
-- Nishant V H
-- Sridula O S
+- [Nishant V H](https://github.com/kernelops)
+- [Sridula O S](https://github.com/Sridula-OS)
 
 ## Acknowledgements & Data Sources
 
@@ -136,3 +136,4 @@ If you use Backblaze data, please cite Backblaze as the source per their dataset
 ## License
 
 Research/educational use. Respect licenses and terms of the underlying datasets and models.
+
